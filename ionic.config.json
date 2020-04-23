@@ -1,0 +1,7 @@
+{
+  "name": "myFav10",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
