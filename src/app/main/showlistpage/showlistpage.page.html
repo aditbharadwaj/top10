@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/folder/Home"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="title">{{ extraData.title }}</ion-title>
+    <ion-buttons slot="end">
+    <ion-button class="top-buttons" *ngIf="newArray.length==0"  (click)="Add()">
+      <ion-icon name="add"></ion-icon>
+    </ion-button>
+    <ion-button  class="top-buttons" *ngIf="newArray.length > 0"  (click)="addMore()">
+      <ion-icon name="add"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab vertical="top" horizontal="end" slot="fixed" >
+    <ion-fab-button>
+      <ion-icon name="arrow-down-circle"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="down">
+      <ion-fab-button *ngIf="newArray.length==0" (click)="setObject()">
+        <ion-icon name="save"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button *ngIf="newArray.length > 0" (click)="updateObject()">
+        <ion-icon name="save-sharp"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button *ngIf="newArray.length > 0" (click)="clear()">
+        <ion-icon  name="trash"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+  <ion-item lines="inset" *ngFor="let att of anArray; let idx = index" >
+    <ion-label color="primary">{{att.label}}<ion-icon name="return-down-forward-outline"></ion-icon></ion-label>
+    <ion-input
+      type="text"
+      text-right
+      [(ngModel)]="anArray[idx].value"
+      placeholder="Type Your Input"
+    ></ion-input>
+    <br />
+    <!-- <ion-button ion-button full (click)="delete(idx)">delete</ion-button> -->
+  </ion-item>
+  <ng-container *ngIf="data">
+    <ion-item *ngFor="let att of newArray; let id = index">
+      <ion-label color="primary">{{att.label}} <ion-icon name="return-down-forward-outline"></ion-icon></ion-label>
+      <ion-input
+      type="text"
+      text-right
+      [(ngModel)]="att.value"
+      placeholder="Type Your Input"
+    ></ion-input>
+    </ion-item>
+  </ng-container>
+</ion-content>
